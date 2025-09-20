@@ -12,14 +12,14 @@ public class PanelServiceImpl implements PanelService {
     @Override
     public List<PanelDTO> getAllPanels() {
         return List.of(
-                new PanelDTO("1", "Rahul kale", "rahul@gmail.com", 15, 12, "Java, Spring Boot, Microservices", "Pune", "GK"),
-                new PanelDTO("2", "Ankit Sharma", "ankit@gmail.com", 10, 8, "Java, Spring Boot, Microservices", "Mumbai", "GK Trainee")
+                new PanelDTO("1", "Rahul kale", "rahul@gmail.com", 15, 12, "Java, Spring Boot, Microservices", "Pune", "GK", "Java"),
+                new PanelDTO("2", "Ankit Sharma", "ankit@gmail.com", 10, 8, "Java, Spring Boot, Microservices", "Mumbai", "GK Trainee", "Java")
         );
     }
 
     @Override
     public PanelDTO getPanelById(String id) {
-        return new PanelDTO("1", "Rahul kale", "rahul@gmail.com", 15, 12, "Java, Spring Boot, Microservices", "Pune", "GK");
+        return new PanelDTO("1", "Rahul kale", "rahul@gmail.com", 15, 12, "Java, Spring Boot, Microservices", "Pune", "GK", "Java");
     }
 
     @Override

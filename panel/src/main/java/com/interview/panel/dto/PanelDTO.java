@@ -18,4 +18,5 @@ public class PanelDTO extends AuditDTO {
     private String skills;
     private String currentLocation;
     private String level;
+    private String category;
 }

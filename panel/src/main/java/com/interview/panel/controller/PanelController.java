@@ -23,7 +23,7 @@ public class PanelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PanelDTO> getPanelById(@RequestParam String id){
+    public ResponseEntity<PanelDTO> getPanelById(@PathVariable String id){
         PanelDTO panelDTO = panelService.getPanelById(id);
         return ResponseEntity.ok(panelDTO);
     }
@@ -34,16 +34,16 @@ public class PanelController {
         return ResponseEntity.ok(panelAdded);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<PanelDTO> updatePanel(@RequestParam String id, @RequestBody PanelDTO panelDTOToUpdate){
+    @PutMapping("/{id}")
+    public ResponseEntity<PanelDTO> updatePanel(@PathVariable String id, @RequestBody PanelDTO panelDTOToUpdate){
         PanelDTO panelUpdated = panelService.updatePanel(id, panelDTOToUpdate);
         return ResponseEntity.ok(panelUpdated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePanel(@RequestParam String id){
+    public ResponseEntity<String> deletePanel(@PathVariable String id){
         panelService.deletePanel(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Panel is deleted successfully");
     }
 
 }
