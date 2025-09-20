@@ -3,13 +3,13 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Dashboard } from './pages/Dashboard'
+import { InterviewRoutes } from './components/InterviewRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     <>
-     <Dashboard />
+     <InterviewRoutes />
     </>
   )
 }
