@@ -27,4 +27,11 @@ public class Candidate extends Auditable {
     private String appliedFor;
     @Column(name="current_designation")
     private String currentDesignation;
+    @Column(name="resume")
+    private String resume;
+    private String currentCtc;
+    private String expectedCtc;
+    private String noticePeriod;
+    private String source;
+    private String status;
 }

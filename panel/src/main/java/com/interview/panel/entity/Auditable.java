@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class Auditable {
 
-    @Column(name="created_by")
+    @Column(name="created_by", updatable = false)
     private String createdBy;
     @CreatedDate
-    @Column(name="created_at")
+    @Column(name="created_at", updatable = false)
     private LocalDateTime createdAt;
     @Column(name="updated_by")
     private String updatedBy;

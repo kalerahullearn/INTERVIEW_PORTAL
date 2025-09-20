@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/candidates")
+@RequestMapping("/api/v1/master")
 public class CandidateController {
 
     @Autowired
     private CandidateService service;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<CandidateDTO>> getAllCandidates() {
         return ResponseEntity.ok(service.getAllCandidates());
     }
@@ -25,7 +25,7 @@ public class CandidateController {
         return ResponseEntity.ok(service.getCandidateById(id));
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<CandidateDTO> createCandidate(@RequestBody CandidateDTO candidate) {
         return ResponseEntity.ok(service.createCandidate(candidate));
     }
