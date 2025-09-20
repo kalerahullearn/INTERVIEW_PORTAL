@@ -8,7 +8,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class PanelDTO extends AuditDTO {
+public class PanelDTO extends AuditableDTO {
 
     private String id;
     private String name;

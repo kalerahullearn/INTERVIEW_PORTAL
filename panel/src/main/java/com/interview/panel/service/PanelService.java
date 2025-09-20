@@ -8,11 +8,11 @@ public interface PanelService {
 
     List<PanelDTO> getAllPanels();
 
-    PanelDTO getPanelById(String id);
+    PanelDTO getPanelById(Long id);
 
     PanelDTO addPanel(PanelDTO panelDTOToAdd);
 
-    PanelDTO updatePanel(String id, PanelDTO panelDTOToUpdate);
+    PanelDTO updatePanel(Long id, PanelDTO panelDTOToUpdate);
 
-    void deletePanel(String id);
+    void deletePanel(Long id);
 }
