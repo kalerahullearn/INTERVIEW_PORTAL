@@ -15,13 +15,13 @@ public class Panel extends Auditable {
     private String name;
     @Column(name="email")
     private String email;
-    @Column(name="total-experience")
+    @Column(name="total_experience")
     private int totalExperience;
-    @Column(name="candidate-experience-upto")
+    @Column(name="candidate_experience_upto")
     private int candidateExperienceUpto;
     @Column(name="skills")
     private String skills;
-    @Column(name="current-location")
+    @Column(name="current_location")
     private String currentLocation;
     @Column(name="level")
     private String level;
