@@ -1,29 +1,17 @@
 import { useState } from "react";
 
-export default function PaginatedTable() {
-  // Sample data
-  const data = [
-    { id: 1, name: "Laptop", price: "₹60,000" },
-    { id: 2, name: "Phone", price: "₹25,000" },
-    { id: 3, name: "Tablet", price: "₹30,000" },
-    { id: 4, name: "Headphones", price: "₹5,000" },
-    { id: 5, name: "Keyboard", price: "₹2,000" },
-    { id: 6, name: "Mouse", price: "₹1,500" },
-    { id: 7, name: "Monitor", price: "₹15,000" },
-    { id: 8, name: "Printer", price: "₹10,000" },
-    { id: 9, name: "Camera", price: "₹40,000" },
-  ];
-
+export const PaginatedTable = ({dataList}) => {
+  
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 3;
+  const rowsPerPage = 1;
 
   // Pagination logic
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
+  const currentRows = (dataList || []).slice(indexOfFirstRow, indexOfLastRow);
 
-  const totalPages = Math.ceil(data.length / rowsPerPage);
+  const totalPages = Math.ceil((dataList || []).length / rowsPerPage);
 
   return (
     <div className="pt-4">
@@ -42,15 +30,21 @@ export default function PaginatedTable() {
             </tr>
             </thead>
             <tbody>
-            <tr className="odd:bg-white even:bg-gray-50">
-                <td className="px-4 py-2">Laptop</td>
-                <td className="px-4 py-2">₹60,000</td>
-                <td className="px-4 py-2">25</td>
-                <td className="px-4 py-2">25</td>
-                <td className="px-4 py-2">25</td>
-                <td className="px-4 py-2">25</td>
-                <td className="px-4 py-2">25</td>
-            </tr>
+            {
+              currentRows && currentRows.map((row, i) => {
+                return (
+                  <tr className="odd:bg-white even:bg-gray-50" key ={i}>
+                    <td className="px-4 py-2">{row.name}</td>
+                    <td className="px-4 py-2">{row.email}</td>
+                    <td className="px-4 py-2">{row.level}</td>
+                    <td className="px-4 py-2">{row.skills}</td>
+                    <td className="px-4 py-2">{row.currentLocation}</td>
+                    <td className="px-4 py-2">{row.totalExperience}</td>
+                    <td className="px-4 py-2">{row.candidateExperienceUpto}</td>
+                </tr>
+                )
+              })
+            }
             </tbody>
         </table>
       </div>  

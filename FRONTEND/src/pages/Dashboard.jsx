@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
-import PaginatedTable from "../components/PaginatedTable";
+import {PaginatedTable} from "../components/PaginatedTable";
+import { Button } from "../components/Button";
+import { useEffect, useState } from "react";
+import { getAllPanels } from "../service/PanelService";
 
 export const Dashboard = () => {
+
+    const [panels, setPanels] = useState([]);
+
+    async function fetchPanels(){
+        const allPanels = await getAllPanels();
+        console.log(allPanels);
+        setPanels(allPanels)
+    }
+
+    useEffect(() => {
+        fetchPanels();
+    }, []);
+
     return (
         <>
             <Header />
@@ -16,12 +32,10 @@ export const Dashboard = () => {
                             />
                         </h2>
                         <Link to={"/panel/add"}>
-                            <button className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-                                Add Panel
-                            </button>
+                            <Button primary={true} text="Add Panel"/>
                         </Link>
                     </div>
-                    <PaginatedTable />
+                    <PaginatedTable dataList={panels}/>
                 </div>
             </main>
         </>

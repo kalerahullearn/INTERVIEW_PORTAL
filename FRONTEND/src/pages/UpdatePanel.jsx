@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import { Button } from "../components/Button";
 
-export const AddPanel = () => {
+export const UpdatePanel = () => {
 
     const [formData, setFormData] = useState({});
 
