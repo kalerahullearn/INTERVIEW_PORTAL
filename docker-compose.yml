@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  frontend:
+    container_name: frontend
+    ports:
+      - "5173:80"
+    build:
+        context: ./frontend
+        dockerfile: Dockerfile
+
+  eureka-server:
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
