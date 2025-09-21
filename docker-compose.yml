@@ -1,14 +1,6 @@
 version: "3.9"
 
 services:
-  frontend:
-    container_name: frontend
-    ports:
-      - "5173:80"
-    build:
-        context: ./frontend
-        dockerfile: Dockerfile
-
   eureka-server:
     container_name: eureka-server
     ports:
@@ -16,3 +8,46 @@ services:
     build:
       context: ./eureka-server
       dockerfile: Dockerfile
+
+  config-server:
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/config
+      EUREKA_SERVER: http://eureka-server:8761/eureka
+      PANEL_DB_URL: jdbc:mysql://localhost:3306/paneldb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USER: root
+      DB_PASSWORD: root
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+
+  panel:
+    container_name: panel
+    build:
+        context: ./panel
+        dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+    depends_on:
+      - eureka-server
+      - config-server
+
+#  frontend:
+#    container_name: frontend
+#    ports:
+#      - "5173:80"
+#    depends_on:
+#      - eureka-server
+##    environment:
+##      - VITE_PANEL_BACKEND_URL=http://panel:8083
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
